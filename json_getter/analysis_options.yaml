@@ -25,9 +25,9 @@ linter:
     # - always_use_package_imports
     - annotate_overrides
     - annotate_redeclares
-    - avoid_annotating_with_dynamic
+    # - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
-    - avoid_catches_without_on_clauses
+    # - avoid_catches_without_on_clauses
     - avoid_catching_errors
     # - avoid_classes_with_only_static_members
     - avoid_double_and_int_checks
@@ -127,7 +127,7 @@ linter:
     - null_closures
     - omit_local_variable_types
     - omit_obvious_local_variable_types
-    - one_member_abstracts
+    # - one_member_abstracts
     - only_throw_errors
     - overridden_fields
     - package_api_docs
