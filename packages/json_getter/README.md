@@ -1,39 +1,50 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# JsonGetter
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package is a useful Flutter tool to extract values from JSON.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Easily extract values from JSON structures.
+- Support for multiple filters to refine data extraction.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, ensure you have Flutter installed and add the package to
+your `pubspec.yaml`.
+
+1. Add the package to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  json_getter: ^0.0.1
+```
+
+2. Import the package in your Dart file:
+
+```dart
+import 'package:json_getter/json_getter.dart';
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+const jsonString = '{"key1": "value1", "key2": "value2"}';
+final filters = FiltersMapper.fromJson(
+    '{"filters":[{"selectorType":"getValueByKey","filterBy":null,"key":"key1","operator":null,"value":null}]}',
+);
+
+final result = JsonGetter.get(filters: filters, json: jsonString);
+print(result); // Output: value1
 ```
+
+## Demo
+![image info](https://github.com/chungxon/json_getter/blob/master/repo/json_getter.gif?raw=true)
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+For more information, visit the [GitHub
+repository](https://github.com/chungxon/json_getter).
+
+## License
+
+MIT License

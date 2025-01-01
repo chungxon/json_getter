@@ -1,7 +1,7 @@
 name: json_getter
-description: "A Flutter package to data from JSON."
+description: "A useful Flutter package tool to extract values from JSON."
 version: 0.0.1
-homepage:
+homepage: https://github.com/chungxon/json_getter
 
 environment:
   sdk: ^3.6.0
