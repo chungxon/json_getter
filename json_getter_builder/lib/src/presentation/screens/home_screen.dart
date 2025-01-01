@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../state/home_viewmodel.dart';
+import 'widgets/json_initialization_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Consumer<HomeViewmodel>(
         builder: (context, model, child) {
-          return const Placeholder();
+          return const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                spacing: 16,
+                children: [
+                  JsonInitializationSection(),
+                ],
+              ),
+            ),
+          );
         },
       ),
     );
