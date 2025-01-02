@@ -1,4 +1,0 @@
-enum JsonSource {
-  rawJson,
-  url,
-}
