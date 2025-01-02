@@ -27,6 +27,8 @@ import 'package:json_getter/json_getter.dart';
 
 ## Usage
 
+### With JSON String
+
 ```dart
 const jsonString = '{"key1": "value1", "key2": "value2"}';
 final filters = FiltersMapper.fromJson(
@@ -37,8 +39,29 @@ final result = JsonGetter.get(filters: filters, json: jsonString);
 print(result); // Output: value1
 ```
 
+### With JSON Map
+
+```dart
+const jsonString = {'key1': 'value1', 'key2': 'value2'};
+final filters = Filters(
+  filters: [
+    const Filter(
+      selectorType: SelectorType.getValueByKey,
+      key: 'key1',
+    ),
+  ],
+);
+
+final result = JsonGetter.get(filters: filters, json: jsonString);
+print(result); // Output: value1
+```
+
 ## Demo
-![image info](https://github.com/chungxon/json_getter/blob/master/repo/json_getter.gif?raw=true)
+![image
+info](https://github.com/chungxon/json_getter/blob/master/repo/json_getter.gif?raw=true)
+
+## Example
+[Json Getter Builder](https://chungxon.github.io/json_getter/)
 
 ## Additional information
 
