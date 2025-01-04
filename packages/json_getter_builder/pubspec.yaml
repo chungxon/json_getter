@@ -34,6 +34,9 @@ dependencies:
   # Core
   json_getter:
     path: ../json_getter
+
+  example:
+    path: ../json_getter/example
   
   # Json Preview
   json_explorer: ^0.1.2

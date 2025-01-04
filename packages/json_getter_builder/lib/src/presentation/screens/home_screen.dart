@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:example/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:json_getter/json_getter.dart';
@@ -134,11 +135,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 200),
                 ],
               ),
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ExampleScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.navigate_next_rounded),
       ),
     );
   }

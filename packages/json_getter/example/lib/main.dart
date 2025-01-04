@@ -15,19 +15,19 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Flutter JSON Getter Example',
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: ExampleScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class ExampleScreen extends StatefulWidget {
+  const ExampleScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ExampleScreen> createState() => _ExampleScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ExampleScreenState extends State<ExampleScreen> {
   ValueNotifier<List<Product>> productList = ValueNotifier([]);
 
   Future<void> _getProducts() async {
@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: (Navigator.canPop(context)) ? AppBar() : null,
       body: ValueListenableBuilder(
         valueListenable: productList,
         builder: (context, value, child) {
