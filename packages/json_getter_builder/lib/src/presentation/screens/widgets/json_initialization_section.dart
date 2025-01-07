@@ -58,33 +58,51 @@ class _JsonInitializationSectionState extends State<JsonInitializationSection> {
           children: [
             ContainerWidget(
               child: Column(
+                spacing: 8,
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    runAlignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       const TitleWidget('JSON Source:'),
-                      Radio<JsonSource>(
-                        value: JsonSource.rawJson,
-                        groupValue: model.jsonSource,
-                        onChanged: (value) =>
-                            model.setJsonSource(value ?? JsonSource.rawJson),
-                      ),
-                      Text(
-                        'Raw JSON',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const SizedBox(width: 8),
-                      Radio<JsonSource>(
-                        value: JsonSource.url,
-                        groupValue: model.jsonSource,
-                        onChanged: (value) =>
-                            model.setJsonSource(value ?? JsonSource.url),
-                      ),
-                      Text(
-                        'URL',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      Wrap(
+                        spacing: 8,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<JsonSource>(
+                                value: JsonSource.rawJson,
+                                groupValue: model.jsonSource,
+                                onChanged: (value) => model
+                                    .setJsonSource(value ?? JsonSource.rawJson),
+                              ),
+                              Text(
+                                'Raw JSON',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<JsonSource>(
+                                value: JsonSource.url,
+                                groupValue: model.jsonSource,
+                                onChanged: (value) => model
+                                    .setJsonSource(value ?? JsonSource.url),
+                              ),
+                              Text(
+                                'URL',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
