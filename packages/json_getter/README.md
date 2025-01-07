@@ -57,11 +57,12 @@ print(result); // Output: value1
 ```
 
 ## Demo
-![image
-info](https://github.com/chungxon/json_getter/blob/master/repo/json_getter.gif?raw=true)
 
-## Example
 [Json Getter Builder](https://chungxon.github.io/json_getter/)
+
+<a href="https://chungxon.github.io/json_getter/" rel="Json Getter
+Builder">![image
+info](https://github.com/chungxon/json_getter/blob/master/repo/json_getter.gif?raw=true)</a> 
 
 ## Additional information
 
