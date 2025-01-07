@@ -1,6 +1,14 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,intellij,flutter,dart,androidstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos,intellij,flutter,dart,androidstudio
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,visualstudiocode,macos,intellij,flutter,dart,androidstudio,cocoapods
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,visualstudiocode,macos,intellij,flutter,dart,androidstudio,cocoapods
+
+### CocoaPods ###
+## CocoaPods GitIgnore Template
+
+# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
+#           - Also handy if you have a large number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+Pods/
 
 ### Dart ###
 # See https://www.dartlang.org/guides/libraries/private-files
@@ -258,6 +266,23 @@ Temporary Items
 .history
 .ionide
 
+### Xcode ###
+## User settings
+xcuserdata/
+
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
 ### AndroidStudio ###
 # Covers files to be ignored for android development using Android Studio.
 
@@ -381,7 +406,7 @@ hs_err_pid*
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,intellij,flutter,dart,androidstudio
+# End of https://www.toptal.com/developers/gitignore/api/xcode,visualstudiocode,macos,intellij,flutter,dart,androidstudio,cocoapods
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
