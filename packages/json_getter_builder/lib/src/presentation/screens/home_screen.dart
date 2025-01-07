@@ -91,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Wrap(
                     spacing: 8,
+                    runSpacing: 8,
                     alignment: WrapAlignment.center,
                     children: [
                       FilledButton.icon(

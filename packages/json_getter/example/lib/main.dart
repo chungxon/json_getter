@@ -20,6 +20,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ----------------------------------------------------------------------------
+// SCREEN
+// ----------------------------------------------------------------------------
+/// Example Screen
 class ExampleScreen extends StatefulWidget {
   const ExampleScreen({super.key});
 
@@ -43,24 +47,29 @@ class _ExampleScreenState extends State<ExampleScreen> {
   }
 
   @override
+  void dispose() {
+    productList.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: (Navigator.canPop(context)) ? AppBar() : null,
       body: ValueListenableBuilder(
         valueListenable: productList,
-        builder: (context, value, child) {
-          return ListView.builder(
-            itemCount: value.length,
-            itemBuilder: (context, index) {
-              return ProductCard(product: value[index]);
-            },
-          );
+        builder: (context, productList, child) {
+          return ProductVerticalList(productList: productList);
         },
       ),
     );
   }
 }
 
+// ----------------------------------------------------------------------------
+// MODELS
+// ----------------------------------------------------------------------------
+/// Product Model
 class Product {
   Product({
     this.name,
@@ -110,8 +119,15 @@ class Product {
   final Map<String, dynamic>? customFields;
 }
 
+// ----------------------------------------------------------------------------
+// WIDGETS
+// ----------------------------------------------------------------------------
+/// Product Card Widget
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.product});
+  const ProductCard({
+    super.key,
+    required this.product,
+  });
 
   final Product product;
 
@@ -132,6 +148,18 @@ class ProductCard extends StatelessWidget {
     );
   }
 
+  Widget _renderProductImage(String image, {double? width, double? height}) {
+    return Align(
+      alignment: Alignment.center,
+      child: Image.network(
+        image,
+        fit: BoxFit.cover,
+        width: width,
+        height: height,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
@@ -148,19 +176,48 @@ class ProductCard extends StatelessWidget {
       child: (screenSize.width > 720 || isLandscape)
           ? Row(
               spacing: 8,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 if (product.image != null)
-                  Flexible(child: Image.network(product.image!)),
+                  Flexible(
+                    child: _renderProductImage(
+                      product.image!,
+                      height: screenSize.height * 0.8,
+                    ),
+                  ),
                 _renderProductDetails(product),
               ],
             )
           : Column(
+              spacing: 8,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                if (product.image != null) Image.network(product.image!),
+                if (product.image != null)
+                  Flexible(child: _renderProductImage(product.image!)),
                 _renderProductDetails(product),
               ],
             ),
+    );
+  }
+}
+
+/// Product Vertical List Widget
+class ProductVerticalList extends StatelessWidget {
+  const ProductVerticalList({super.key, required this.productList});
+
+  final List<Product> productList;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: productList.length,
+      itemBuilder: (context, index) {
+        return ProductCard(
+          product: productList[index],
+        );
+      },
     );
   }
 }
