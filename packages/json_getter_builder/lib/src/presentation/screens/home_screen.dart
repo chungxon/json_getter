@@ -46,99 +46,97 @@ class _HomeScreenState extends State<HomeScreen> {
                     model.filterJsons.entries.lastOrNull?.value ?? '',
                   ));
 
-          return Padding(
+          return SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                spacing: 16,
-                children: [
-                  const JsonInitializationSection(),
-                  for (var i = 0; i < model.filters.filters.length; i++)
-                    JsonGetterSection(
-                      index: i,
-                      filter: model.filters.filters[i],
-                      rawJson: i == 0
-                          ? model.rawJson
-                          : model.filterJsons[i - 1] ?? '',
-                      outputJson: model.filterJsons[i],
-                      onFilterChanged: (filter, json) {
-                        model.updateFilters(i, filter, json);
-                      },
+            child: Column(
+              spacing: 16,
+              children: [
+                const JsonInitializationSection(),
+                for (var i = 0; i < model.filters.filters.length; i++)
+                  JsonGetterSection(
+                    index: i,
+                    filter: model.filters.filters[i],
+                    rawJson:
+                        i == 0 ? model.rawJson : model.filterJsons[i - 1] ?? '',
+                    outputJson: model.filterJsons[i],
+                    onFilterChanged: (filter, json) {
+                      model.updateFilters(i, filter, json);
+                    },
+                  ),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    FilledButton.icon(
+                      onPressed:
+                          disableAddNewFilter ? null : model.addNewFilter,
+                      label: const Text('Add Filter'),
+                      icon: const Icon(Icons.add_rounded),
                     ),
-                  Row(
-                    spacing: 8,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FilledButton.icon(
-                        onPressed:
-                            disableAddNewFilter ? null : model.addNewFilter,
-                        label: const Text('Add Filter'),
-                        icon: const Icon(Icons.add_rounded),
-                      ),
-                      FilledButton.icon(
-                        onPressed: model.filters.filters.isEmpty
-                            ? null
-                            : model.removeLastFilter,
-                        label: const Text('Remove Last Filter'),
-                        icon: const Icon(Icons.remove_rounded),
-                      ),
-                    ],
-                  ),
-                  const Divider(),
-                  QuickPreviewSection(
-                    rawJson: model.rawJson,
-                    filterJson: model.filters.toJson(),
-                  ),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      FilledButton.icon(
-                        onPressed: () {
-                          model
-                            ..setRawJson(jsonEncode(jsonMock))
-                            ..setFilters(
-                              FiltersMapper.fromMap(filtersMock),
-                            );
-                        },
-                        label: const Text('Use Example Data'),
-                        icon: const Icon(Icons.refresh_rounded),
-                      ),
-                      FilledButton.icon(
-                        onPressed: () {
-                          Clipboard.getData('text/plain').then((value) {
-                            if (value == null) {
-                              _showMessage(
-                                'Your clipboard data is invalid.',
-                              );
-                              return;
-                            }
-                            final filters = value.text ?? '';
-                            model.setFilters(
-                              FiltersMapper.fromJson(filters),
-                            );
-                          });
-                        },
-                        label: const Text('Import Filters'),
-                        icon: const Icon(Icons.input_rounded),
-                      ),
-                      FilledButton.icon(
-                        onPressed: () {
-                          final filters = model.filters.toJson();
-                          Clipboard.setData(
-                            ClipboardData(text: filters),
+                    FilledButton.icon(
+                      onPressed: model.filters.filters.isEmpty
+                          ? null
+                          : model.removeLastFilter,
+                      label: const Text('Remove Last Filter'),
+                      icon: const Icon(Icons.remove_rounded),
+                    ),
+                  ],
+                ),
+                const Divider(),
+                QuickPreviewSection(
+                  rawJson: model.rawJson,
+                  filterJson: model.filters.toJson(),
+                ),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    FilledButton.icon(
+                      onPressed: () {
+                        model
+                          ..setRawJson(jsonEncode(jsonMock))
+                          ..setFilters(
+                            FiltersMapper.fromMap(filtersMock),
                           );
-                          _showMessage('Filters copied to clipboard.');
-                        },
-                        label: const Text('Export Filters'),
-                        icon: const Icon(Icons.output_rounded),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 200),
-                ],
-              ),
+                      },
+                      label: const Text('Use Example Data'),
+                      icon: const Icon(Icons.refresh_rounded),
+                    ),
+                    FilledButton.icon(
+                      onPressed: () {
+                        Clipboard.getData('text/plain').then((value) {
+                          if (value == null) {
+                            _showMessage(
+                              'Your clipboard data is invalid.',
+                            );
+                            return;
+                          }
+                          final filters = value.text ?? '';
+                          model.setFilters(
+                            FiltersMapper.fromJson(filters),
+                          );
+                        });
+                      },
+                      label: const Text('Import Filters'),
+                      icon: const Icon(Icons.input_rounded),
+                    ),
+                    FilledButton.icon(
+                      onPressed: () {
+                        final filters = model.filters.toJson();
+                        Clipboard.setData(
+                          ClipboardData(text: filters),
+                        );
+                        _showMessage('Filters copied to clipboard.');
+                      },
+                      label: const Text('Export Filters'),
+                      icon: const Icon(Icons.output_rounded),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 200),
+              ],
             ),
           );
         },
