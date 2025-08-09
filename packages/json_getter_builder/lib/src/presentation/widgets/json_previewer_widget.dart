@@ -217,7 +217,7 @@ class _JsonPreviewerWidgetState extends State<JsonPreviewerWidget> {
     );
   }
 
-  bool _valueIsUrl(value) {
+  bool _valueIsUrl(dynamic value) {
     if (value is String) {
       return Uri.tryParse(value)?.hasAbsolutePath ?? false;
     }

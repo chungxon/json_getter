@@ -14,3 +14,7 @@ cd ../..
 mv build/web/build.zip ../..
 
 echo "Build Web Done !!!"
+
+# Checkout 'example' branch
+# Extract build.zip
+# Commit and push
